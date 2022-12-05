@@ -1,4 +1,4 @@
-use std::{ops::Range, collections::{HashSet, hash_set}};
+use std::{collections::{HashSet}};
 
 pub fn part_one(input: &str) -> Option<usize> {
     let overlapping_jobs = input.lines().map(|line| line.split_once(",").unwrap()).map(|l| [l.0, l.1].iter().map(|section| {
