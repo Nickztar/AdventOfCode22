@@ -1,8 +1,5 @@
 #![feature(array_windows)]
 use std::collections::HashSet;
-use std::env;
-use std::fs;
-
 
 type Position = (i32, i32);
 type Offset = (i32, i32);
@@ -174,6 +171,8 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::env;
+    use std::fs;
 
     #[test]
     fn test_part_one() {
