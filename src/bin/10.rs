@@ -81,9 +81,6 @@ pub fn part_two(input: &str) -> Option<u32> {
             if drawing.contains(&cursor) {
                 crt[y as usize][cursor as usize] = '#';
             }
-            if y == 0 {
-                println!("cursor {0} spite_pos {1:?}", cursor, drawing);
-            }
             match cycles % 40 {
                 0 => {
                     y += 1;
