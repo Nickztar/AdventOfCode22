@@ -1,7 +1,11 @@
 use lazy_static::lazy_static;
 use regex::Regex;
 use std::ops::Range;
+#[cfg(not(test))]
 const SLICE: isize = 2_000_000;
+#[cfg(test)]
+const SLICE: isize = 10;
+
 #[derive(Debug)]
 pub struct Sensor {
     x: isize,
@@ -94,7 +98,11 @@ pub fn part_one(input: &str) -> Option<usize> {
 }
 
 pub fn part_two(input: &str) -> Option<isize> {
+    #[cfg(not(test))]
     let limit = 4_000_000;
+    #[cfg(test)]
+    let limit = 20;
+
     let regex =
         Regex::new(r"Sensor at x=(-?{1}\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)")
             .unwrap();
@@ -153,12 +161,14 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore = "done"]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 15);
         assert_eq!(part_one(&input), Some(26));
     }
 
     #[test]
+    #[ignore = "done"]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 15);
         assert_eq!(part_two(&input), Some(56_000_011));

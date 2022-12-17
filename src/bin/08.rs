@@ -23,7 +23,6 @@ fn make_tree_visibility_grid(tree_grid: &TreeGrid) -> VisibilityGrid {
     }
     visibility_grid
 }
- 
 
 fn assess_tree_visibility(
     mut visibility_grid: VisibilityGrid,
@@ -32,7 +31,7 @@ fn assess_tree_visibility(
     let length = tree_grid.len();
     let width = tree_grid[0].len();
     let mut local_max: u32;
- 
+
     // assess left to right
     for i in 0..length {
         local_max = tree_grid[i][0];
@@ -91,7 +90,7 @@ fn assess_scenic_score(tree_grid: TreeGrid) -> u32 {
     for i in 1..length - 1 {
         for j in 1..width - 1 {
             let tree_height = tree_grid[i][j];
- 
+
             // assess up
             up = 0;
             for n in (0..i).rev() {
@@ -102,7 +101,7 @@ fn assess_scenic_score(tree_grid: TreeGrid) -> u32 {
                     break;
                 }
             }
- 
+
             // assess left
             left = 0;
             for n in (0..j).rev() {
@@ -113,7 +112,7 @@ fn assess_scenic_score(tree_grid: TreeGrid) -> u32 {
                     break;
                 }
             }
- 
+
             // assess right
             right = 0;
             for n in j + 1..width {
@@ -124,7 +123,7 @@ fn assess_scenic_score(tree_grid: TreeGrid) -> u32 {
                     break;
                 }
             }
- 
+
             // assess down
             down = 0;
             for n in i + 1..length {
@@ -135,16 +134,16 @@ fn assess_scenic_score(tree_grid: TreeGrid) -> u32 {
                     break;
                 }
             }
- 
+
             // check scenic score
             scenic_score = scenic_score.max(up * right * down * left);
         }
     }
- 
+
     scenic_score
 }
 pub fn part_one(input: &str) -> Option<usize> {
-      let tree_grid = make_tree_grid(input);
+    let tree_grid = make_tree_grid(input);
     let mut visibility_grid = make_tree_visibility_grid(&tree_grid);
     visibility_grid = assess_tree_visibility(visibility_grid, &tree_grid);
     let length = tree_grid.len();
@@ -176,12 +175,14 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore = "done"]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 8);
         assert_eq!(part_one(&input), Some(21));
     }
 
     #[test]
+    #[ignore = "done"]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 8);
         assert_eq!(part_two(&input), Some(8));

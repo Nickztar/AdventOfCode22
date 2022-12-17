@@ -1,30 +1,29 @@
 #[derive(Debug)]
 enum Operation {
     Add(i32),
-    Noop
+    Noop,
 }
 
 pub fn part_one(input: &str) -> Option<i32> {
-    let operations: Vec<Operation> = input.lines().map(|line| {
-        if line.contains("noop") {
-            Operation::Noop
-        }else {
-            let split = line.split(" ");
-            let x = split.skip(1).next().unwrap();
-            Operation::Add(x.parse().unwrap())
-        }
-    }).collect();
+    let operations: Vec<Operation> = input
+        .lines()
+        .map(|line| {
+            if line.contains("noop") {
+                Operation::Noop
+            } else {
+                let split = line.split(" ");
+                let x = split.skip(1).next().unwrap();
+                Operation::Add(x.parse().unwrap())
+            }
+        })
+        .collect();
     let mut signal_str: Vec<i32> = Vec::new();
     let mut cycles: i32 = 0;
     let mut global_x: i32 = 1;
     for operation in operations {
         let action = match operation {
-            Operation::Add(x) => {
-                (2, x)
-            },
-            Operation::Noop => {
-                (1, 0)
-            }
+            Operation::Add(x) => (2, x),
+            Operation::Noop => (1, 0),
         };
         for _cycle in 0..action.0 {
             cycles += 1;
@@ -41,15 +40,18 @@ pub fn part_one(input: &str) -> Option<i32> {
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
-    let operations: Vec<Operation> = input.lines().map(|line| {
-        if line.contains("noop") {
-            Operation::Noop
-        }else {
-            let split = line.split(" ");
-            let x = split.skip(1).next().unwrap();
-            Operation::Add(x.parse().unwrap())
-        }
-    }).collect();
+    let operations: Vec<Operation> = input
+        .lines()
+        .map(|line| {
+            if line.contains("noop") {
+                Operation::Noop
+            } else {
+                let split = line.split(" ");
+                let x = split.skip(1).next().unwrap();
+                Operation::Add(x.parse().unwrap())
+            }
+        })
+        .collect();
     let mut crt: Vec<Vec<char>> = Vec::new();
     for _y in 0..6 {
         let mut row: Vec<char> = Vec::new();
@@ -63,21 +65,13 @@ pub fn part_two(input: &str) -> Option<u32> {
     let mut global_x: i32 = 1;
     for operation in operations {
         let action = match operation {
-            Operation::Add(x) => {
-                (2, x)
-            },
-            Operation::Noop => {
-                (1, 0)
-            }
+            Operation::Add(x) => (2, x),
+            Operation::Noop => (1, 0),
         };
         for _cycle in 0..action.0 {
             cycles += 1;
             let cursor = cycles % 40 - 1;
-            let drawing = [
-                global_x - 1,
-                global_x,
-                global_x + 1
-            ];
+            let drawing = [global_x - 1, global_x, global_x + 1];
             if drawing.contains(&cursor) {
                 crt[y as usize][cursor as usize] = '#';
             }
@@ -108,12 +102,14 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore = "done"]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 10);
         assert_eq!(part_one(&input), Some(13140));
     }
 
     #[test]
+    #[ignore = "done"]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 10);
         assert_eq!(part_two(&input), Some(1));
