@@ -124,7 +124,6 @@ pub fn part_one(input: &str) -> Option<i128> {
     let mut pieces_count: usize = 0;
     let mut jet_index = 0usize;
     let mut starting_y: i128 = 3;
-    let mut directions = jet_directions.iter().cycle();
     while pieces_count < 2022 {
         //Spawn a piece
         let mut piece = TetrisPiece::new(
@@ -288,12 +287,14 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore = "done"]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 17);
         assert_eq!(part_one(&input), Some(3068));
     }
 
     #[test]
+    #[ignore = "done"]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 17);
         assert_eq!(part_two(&input), Some(1514285714288));
