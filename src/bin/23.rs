@@ -175,12 +175,14 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore = "done"]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 23);
         assert_eq!(part_one(&input), Some(110));
     }
 
     #[test]
+    #[ignore = "done"]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 23);
         assert_eq!(part_two(&input), Some(20));
